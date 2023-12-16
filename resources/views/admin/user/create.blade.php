@@ -27,14 +27,17 @@
                 <form class="w-25" action="{{route('admin.user.store')}}" method="POST">
                     @csrf
                     <div class="form-group" >
-                        <input type="text" class="form-control" name="name" placeholder="Имя пользователя" >
+                        <input type="text" class="form-control" name="name" placeholder="Имя пользователя"
+                        value="{{old('name')}}">
                         @error('name')
                             <div class="text-danger">{{$message}}</div>
                         @enderror
                     </div>
 
                     <div class="form-group" >
-                        <input type="text" class="form-control" name="email" placeholder="Email" >
+                        <input type="text" class="form-control" name="email" placeholder="Email"
+                        value="{{old('email')}}"
+                        >
                         @error('email')
                         <div class="text-danger">{{$message}}</div>
                         @enderror

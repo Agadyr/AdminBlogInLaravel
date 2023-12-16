@@ -29,6 +29,7 @@
                     @method("patch")
                     <div class="form-group" >
                         <input type="text" class="form-control" name="name" placeholder="Название категории"
+                        {{old('name')}}
                         value="{{$user->name}}">
                         @error('name')
                             <div class="text-danger">{{$message}}</div>
