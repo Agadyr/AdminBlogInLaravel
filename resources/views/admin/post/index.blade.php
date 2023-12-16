@@ -48,10 +48,14 @@
                                         <tr>
                                             <td>{{$post->id}}</td>
                                             <td>{{$post->title}}</td>
-                                            <td><a href="{{route('admin.post.show',$post->id)}}"><i
-                                                        class="far fa-eye"></i></a></td>
-                                            <td><a href="{{route('admin.post.edit',$post->id)}}"
-                                                   class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
+                                            <td>
+                                                <a href="{{route('admin.post.show',$post->id)}}"><i
+                                                        class="far fa-eye"></i></a>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('admin.post.edit',$post->id)}}"
+                                                   class="text-success"><i class="fas fa-pencil-alt"></i></a>
+                                            </td>
                                             <td>
                                                 <form action="{{route('admin.post.delete',$post->id)}}"
                                                       method="Post">
