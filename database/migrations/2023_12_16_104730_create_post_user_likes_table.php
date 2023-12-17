@@ -22,8 +22,8 @@ class CreatePostUserLikesTable extends Migration
             $table->index('post_id','pul_post_idx');
             $table->index('user_id','pul_user_idx');
 
-            $table->foreign('post_id', 'pul_post_fk')->on()->references('id');
-            $table->foreign('user_id', 'pul_user_fk')->on()->references('id');
+            $table->foreign('post_id', 'pul_post_fk')->references('id')->on('posts');
+            $table->foreign('user_id', 'pul_user_fk')->references('id')->on('users');
         });
     }
 
