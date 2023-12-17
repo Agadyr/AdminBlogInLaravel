@@ -16,8 +16,26 @@
                     </div>
                 </div>
             </section>
+
             <div class="row">
                 <div class="col-lg-9 mx-auto">
+                    <section class="py-0">
+                        <form action="{{route('post.like.store',$post->id)}}" method="POST">
+                            @csrf
+                            @method("POST")
+                            <button type="submit" class="border-0 bg-transparent">
+                                @auth()
+                                    @if(auth()->user()->likedposts->contains($post->id))
+                                        <i class="fas fa-heart"></i>
+                                    @else
+                                        <i class="far fa-heart"></i>
+                                    @endif
+                                @endauth
+
+
+                            </button>
+                        </form>
+                    </section>
                     <section class="related-posts">
 
                         @if(count($relatedPosts) == 0)
@@ -50,6 +68,7 @@
                             @endif
                         </div>
                     </section>
+
                     <section class="comment-list mb-5">
                         <h2 class="section-title mb-5" data-aos="fade-up">
                             Комментарии({{$post->comments->count()}})
