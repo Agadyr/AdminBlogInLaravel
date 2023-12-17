@@ -17,9 +17,18 @@
 <body>
 <div class="edica-loader"></div>
 <header>
-    <div class="container d-flex align-items-center"style="width: 100%;;">
+    <div class="container d-flex align-items-center" style="width: 100%;;">
         <a class="navbar-brand" href="index.html"><img src="assets/images/logo.svg" alt="Edica"></a>
-        <a class="nav-link text-decoration-none " style="color:#000;font-weight: bold;text-align: center;" href="{{route('main.index')}}">Блог</a>
+        <a class="nav-link text-decoration-none " style="color:#000;font-weight: bold;text-align: center;"
+           href="{{route('main.index')}}">Блог</a>
+        @auth()
+            <a class="nav-link text-decoration-none " style="color:#000;font-weight: bold;text-align: center;"
+               href="{{route('personal.main.index')}}">Личный Кабинет</a>
+        @endauth
+        @guest()
+            <a class="nav-link text-decoration-none " style="color:#000;font-weight: bold;text-align: center;"
+               href="{{route('personal.main.index')}}">Войти</a>
+        @endguest
     </div>
 </header>
 
