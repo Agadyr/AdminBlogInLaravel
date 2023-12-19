@@ -14,6 +14,39 @@
     <script src="assets/vendors/jquery/jquery.min.js"></script>
     <script src="assets/js/loader.js"></script>
 </head>
+<style>
+    .drop1{
+        padding: 0 !important;
+        margin-top: 5px;
+    }
+    .drop1 a{
+        padding: 5px 10px;
+        text-decoration: none;
+    }
+    .drop1 a:hover{
+        width: 100%;
+        height: 100%;
+        background-color: #dedede;
+        cursor: pointer;
+        color: #fff;
+        transition: .1s;
+    }
+    .drop1 {
+        display: none;
+        overflow: hidden;
+        animation: fadeInOut 0.2s ease-in-out;
+    }
+    @keyframes fadeInOut {
+        0% {
+            max-height: 0;
+            opacity: 0;
+        }
+        100% {
+            max-height: 200px; /* Установите значение, которое соответствует максимальной высоте контента */
+            opacity: 1;
+        }
+    }
+</style>
 <body>
 <div class="edica-loader"></div>
 <header>
@@ -28,6 +61,20 @@
         @guest()
             <a class="nav-link text-decoration-none " style="color:#000;font-weight: bold;text-align: center;"
                href="{{route('personal.main.index')}}">Войти</a>
+        @endguest
+        @guest()
+            <div style="position: relative;width: 200px;">
+                <button class="nav-link text-decoration-none " style="color:#000;font-weight: bold;text-align: left;padding: 0;border: none;background-color: transparent;outline: none"
+                    onclick="ToggleMenu()">Категории</button>
+                <div class="drop1" style="position: absolute;background-color: #fff;border: 1px solid #dedede;z-index: 999;padding: 10px;border-radius: 4px">
+                    @foreach($category as $categories)
+                        @if($categories)
+                            <a href="{{route('category.post.index',$categories->id)}}" style="font-size: 14px;display: block"> {{$categories->title}}</a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+
         @endguest
     </div>
 </header>
@@ -123,6 +170,16 @@
     AOS.init({
         duration: 1000
     });
+    function ToggleMenu(){
+        let drop1 = document.querySelector('.drop1')
+        if (drop1.style.display === 'none' || drop1.style.display === '') {
+            drop1.style.display = 'block';
+        } else {
+            drop1.style.display = 'none';
+        }
+    }
+
+
 </script>
 </body>
 

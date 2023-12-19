@@ -27,7 +27,9 @@ Route::group(['namespace' => 'Post','prefix'=>'posts'], function () {
     Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function () {
         Route::post('/', 'StoreController')->name('post.like.store');
     });
-
+    Route::group(['namespace' => 'Category', 'prefix' => 'category'], function () {
+        Route::get('/{category}', 'IndexController')->name('category.post.index');
+    });
 });
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
     Route::group(['namespace' => 'Main','prefix'=>'main'], function () {

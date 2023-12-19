@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Post\Category;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -9,15 +9,13 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Category $category)
     {
-        $posts = Post::paginate(6);
+        $posts = $category->posts;
+        $category = Category::all();
         $randomPosts = Post::get()->random(4);
         $likedposts = Post::withCount('likedUsers')->orderBy('liked_users_count','DESC')->get()->take(4);
-        $category = Category::all();
-
-//        dd($likedPosts);
-        return view('post.index',compact('posts','randomPosts','likedposts','category'));
+        return view('category.index',compact('posts','category','randomPosts','likedposts'));
     }
 
 }

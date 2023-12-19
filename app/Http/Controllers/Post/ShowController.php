@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,8 +20,9 @@ class ShowController extends Controller
             ->get()
             ->take(3);
         $randomPosts = Post::get()->random(3);
+        $category = Category::all();
 //        dd($data->format('Y-m-d'));
-        return view('post.show',compact('post','date','relatedPosts','randomPosts'));
+        return view('post.show',compact('post','date','relatedPosts','randomPosts','category'));
     }
 
 }
